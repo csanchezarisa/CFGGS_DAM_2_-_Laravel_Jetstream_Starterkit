@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
-    return response('hey');
+    if ($request->user()->tokenCan('register')) {
+        return response('funciona');
+    }
+    else {
+        return 'no puede marica';
+    }
 });
