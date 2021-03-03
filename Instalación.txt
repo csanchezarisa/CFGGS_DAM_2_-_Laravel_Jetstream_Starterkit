@@ -1,0 +1,4 @@
+Paso 1 -> composer global update (actualiza instalador de laravel)
+Paso 2 -> Laravel new project --jet
+Paso 3 -> Migrate
+Paso 4 -> Instalar Inertia -> composer require inertiajs/inertia-laravel
