@@ -40,7 +40,6 @@ class ApioController extends Controller
         $apio->id = $lastId;
         $apioArr[] = $apio;
         $apio->update($apioArr);
-        return view('apio')->with('apio', $apio);
     }
 
     /**
@@ -75,7 +74,6 @@ class ApioController extends Controller
     public function update(Request $request, Apio $apio)
     {
         $apio->update($request->all());
-        return view('apio')->with('apio', $apio);
     }
 
     /**
@@ -107,6 +105,5 @@ class ApioController extends Controller
         } else {
             $apio->delete();
         }
-        return redirect('/apio');
     }
 }
