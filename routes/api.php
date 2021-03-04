@@ -26,10 +26,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
     if ($request->user()->tokenCan('base')) {
-        return response('El token tiene permisos');
+        return response('El token tiene permisos', 200, array());
     }
     else {
-        return response('El token no tiene premisos');
+        return response('El token no tiene premisos', 400, array());
     }
 });
 
