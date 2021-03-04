@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Apio;
 
 class ApioSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class ApioSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Apio::factory()->times(5)->create();
     }
 }
