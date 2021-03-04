@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
 
 // Conexión con la tabla apios para todo el mundo
 Route::get('/apios', [ApioController::class, 'index']);
-Route::get('/apios/{id}', [ApioController::class, 'show']);
+Route::get('/apios/{apio}', [ApioController::class, 'show']);
 
 // Conexión con la tabla apios para tokens
 Route::middleware('auth:sanctum')->post('/apios', function (Request $request) {
@@ -47,18 +47,18 @@ Route::middleware('auth:sanctum')->post('/apios', function (Request $request) {
     }
 });
 
-Route::middleware('auth:sanctum')->put('/apios/{id}', function (Request $request) {
+Route::middleware('auth:sanctum')->put('/apios/{id}', function ($id, Request $request) {
     if ($request->user()->tokenCan('actualizar')) {
-        return ApioController::update($request);
+        return ApioController::update($request, $id);
     }
     else {
         return response('No tienes permisos');
     }
 });
 
-Route::middleware('auth:sanctum')->delete('/apios/{id}', function (Request $request) {
+Route::middleware('auth:sanctum')->delete('/apios/{id}', function ($id, Request $request) {
     if ($request->user()->tokenCan('eliminar')) {
-        return ApioController::delete($request);
+        return ApioController::destroy($id);
     }
     else {
         return response('No tienes permisos');
