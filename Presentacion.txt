@@ -1,0 +1,16 @@
+1- Jaja, ha dicho apiorest
+2- Enseñar documentación de Jetstream
+3- Seguir los pasos de la documentación
+3.1- Posibles errores en Errores con Jetstream.txt
+4- config\fortify.php -> Explicar las features
+5- Habilitar feature Registrar
+6- Registrar usuario y navegar, mostrar tema sesiones
+7- config\jetstream.php -> Explicar las features
+8- Hablitiar la feature apiorest
+9- Enseñar a generar token y asignar permisos
+10- Customizar los permisos desde app\providers\jetstreanserviceprovider
+11- Generar varios token GUARDARLO!
+12- Probar token con Postman
+13- Crear modelo con controler Apio
+14- Configurar modelo, factory, seeder y controller
+15- Definir las rutas api con los permisos. Para que funcione android, seguir las mismas que en el repo
