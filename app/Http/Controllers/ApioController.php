@@ -33,14 +33,14 @@ class ApioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
         $apio = Apio::create($request->all());
         $lastId = Apio::count();
         $apio->id = $lastId;
         $apioArr[] = $apio;
         $apio->update($apioArr);
-        return response('created', 201, array())->json($apio);
+        return response()->json($apio);
     }
 
     /**
@@ -72,8 +72,9 @@ class ApioController extends Controller
      * @param  \App\Models\Apio  $apio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Apio $apio)
+    public static function update(Request $request, $id)
     {
+        $apio = Apio::find($id);
         $apio->update($request->all());
         return response()->json($apio);
     }
@@ -84,8 +85,9 @@ class ApioController extends Controller
      * @param  \App\Models\Apio  $apio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Apio $apio)
+    public static function destroy($ide)
     {
+        $apio = Apio::find($ide);
         $id = $apio->id;
         $apios = Apio::all();
         if(Apio::count() > 1){
@@ -107,6 +109,7 @@ class ApioController extends Controller
         } else {
             $apio->delete();
         }
-        return response();
+
+        return response('Deleted', 200, array());
     }
 }
