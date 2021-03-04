@@ -16,6 +16,10 @@ use App\Http\Controllers\ApioController;
 |
 */
 
+Route::get('/prueba', function() {
+    return response('ok', 200, array());
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
