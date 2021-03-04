@@ -22,7 +22,9 @@ class ApioFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nom' => $this->faker->name,
+            'tipus' => $this->faker->title,
+            'caducitat' => $this->faker->dateTime('now', null),
         ];
     }
 }

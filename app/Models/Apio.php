@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apio extends Model
 {
+    private $fillable = ['nom', 'tipus', 'caducitat'];
     use HasFactory;
 }
