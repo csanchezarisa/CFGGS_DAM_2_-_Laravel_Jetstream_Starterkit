@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\ApioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,42 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
-    if ($request->user()->tokenCan('register')) {
-        return response('funciona');
+    if ($request->user()->tokenCan('base')) {
+        return response('El token tiene permisos');
     }
     else {
-        return 'no puede marica';
+        return response('El token no tiene premisos');
+    }
+});
+
+// Conexión con la tabla apios para todo el mundo
+Route::get('/apios', [ApioController::class, 'index']);
+Route::get('/apios/{id}', [ApioController::class, 'show']);
+
+// Conexión con la tabla apios para tokens
+Route::middleware('auth:sanctum')->post('/apios', function (Request $request) {
+    if ($request->user()->tokenCan('escribir')) {
+        return ApioController::store($request);
+    }
+    else {
+        return response('No tienes permisos');
+    }
+});
+
+Route::middleware('auth:sanctum')->put('/apios/{id}', function (Request $request) {
+    if ($request->user()->tokenCan('actualizar')) {
+        return ApioController::update($request);
+    }
+    else {
+        return response('No tienes permisos');
+    }
+});
+
+Route::middleware('auth:sanctum')->delete('/apios/{id}', function (Request $request) {
+    if ($request->user()->tokenCan('eliminar')) {
+        return ApioController::delete($request);
+    }
+    else {
+        return response('No tienes permisos');
     }
 });
