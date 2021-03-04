@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
-    if ($request->user()->tokenCan('delete')) {
+    if ($request->user()->tokenCan('base')) {
         return response('El token tiene permisos');
     }
     else {
