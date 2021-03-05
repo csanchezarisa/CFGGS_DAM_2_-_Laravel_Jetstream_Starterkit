@@ -33,7 +33,7 @@ class ApioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function store(Request $request)
+    public function store(Request $request)
     {
         $apio = Apio::create($request->all());
         $lastId = Apio::count();
@@ -72,7 +72,7 @@ class ApioController extends Controller
      * @param  \App\Models\Apio  $apio
      * @return \Illuminate\Http\Response
      */
-    public static function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $apio = Apio::find($id);
         $apio->update($request->all());
@@ -85,7 +85,7 @@ class ApioController extends Controller
      * @param  \App\Models\Apio  $apio
      * @return \Illuminate\Http\Response
      */
-    public static function destroy($ide)
+    public function destroy($ide)
     {
         $apio = Apio::find($ide);
         $id = $apio->id;

@@ -40,7 +40,8 @@ Route::get('/apios/{apio}', [ApioController::class, 'show']);
 // Conexión con la tabla apios para tokens
 Route::middleware('auth:sanctum')->post('/apios', function (Request $request) {
     if ($request->user()->tokenCan('escribir')) {
-        return ApioController::store($request);
+        $ApioController = new ApioController();
+        return $ApioController->store($request);
     }
     else {
         return response('No tienes permisos');
@@ -49,7 +50,8 @@ Route::middleware('auth:sanctum')->post('/apios', function (Request $request) {
 
 Route::middleware('auth:sanctum')->put('/apios/{id}', function ($id, Request $request) {
     if ($request->user()->tokenCan('actualizar')) {
-        return ApioController::update($request, $id);
+        $ApioController = new ApioController();
+        return $ApioController->update($request, $id);
     }
     else {
         return response('No tienes permisos');
@@ -58,7 +60,8 @@ Route::middleware('auth:sanctum')->put('/apios/{id}', function ($id, Request $re
 
 Route::middleware('auth:sanctum')->delete('/apios/{id}', function ($id, Request $request) {
     if ($request->user()->tokenCan('eliminar')) {
-        return ApioController::destroy($id);
+        $ApioController = new ApioController();
+        return $ApioController->destroy($id);
     }
     else {
         return response('No tienes permisos');
